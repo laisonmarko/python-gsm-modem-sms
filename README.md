@@ -3,7 +3,7 @@ GSM modem module for Python
 
 python-sms-modem-api is a program that allow sending and receiving sms using gsm modem or broadband module
 
-*features 
+* features 
 
 Functions for sending messages and receiving message
 allows handling of AT commands 
@@ -13,7 +13,7 @@ allows handling of AT commands
 sms: easy to use python script with functions for sending and receiving sms .
 ports.py: Script used to print all ports and devices attached to
 
-*How to use this package
+* How to use this package
 
 Identify port attached to the modem
 py ports.py 
