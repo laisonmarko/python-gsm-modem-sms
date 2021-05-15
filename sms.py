@@ -3,22 +3,22 @@ import time
 import sys
 
 
-ser = serial.Serial('COM30', 115200, timeout=12)
+ser = serial.Serial('COM30', 115200, timeout=12)   #initialize modem com port 
 
-def SendCommand(command):
+def SendCommand(command, getline=True):
 
-    print(command)
+    #print(command)
     ser.write(command.encode())
     time.sleep(2)
-    data = ''
+    response = ''
     if getline:
-        data=ReadLine()
-        return(data) 
+        response=ReadLine()
+        return(response) 
 
 def ReadLine():
-    data = ser.readline()
-    print (data)
-    return data 
+    response = ser.readline()
+    print (response)
+    return response 
 
 
 
@@ -31,18 +31,20 @@ def ReceiveSms():
 
 
     command = 'AT+CMGL="REC UNREAD"\r'                  #gets sms that has not been read
-    print (SendCommand(command))
-    data = ser.readall()
-    data=str(data)
-    print(data)
-    if "REC UNREAD" in data:
-        numberIndex=data.find('+255')
-        smsIndex=data.find('"\\r\\n')+5
-        smsLastIndex=data.find('\\r\\n\\r\\nOK\\r\\n')
-        phone=data[numberIndex:numberIndex+13]
-        sms=data[smsIndex:smsLastIndex]
+    #print (SendCommand(command, getline=True))
+    response = ser.readall()                            #read response from serial
+    response=str(response)
+    #print(response)
+    if "REC UNREAD" in response:
+        numberIndex=response.find('+255')  
+        smsIndex=response.find('"\\r\\n')+5
+        smsLastIndex=response.find('\\r\\n\\r\\nOK\\r\\n')
+        phone=response[numberIndex:numberIndex+13]
+        sms=response[smsIndex:smsLastIndex]
         print("Phone:"+phone)
         print("sms :" +sms)
+
+        return(phone,sms)
 
 
 def SendSms(message,to):
@@ -66,6 +68,7 @@ def SendSms(message,to):
 
       print ("disconnecting")
       ser.flush()
-      #ser.close()
+      ser.close()
 
 
+print(phone.ReceiveSms())
