@@ -1,2 +1,2 @@
 # python-sms-modem-api
-Send and  receive sms from modem and mobile broadband 
+Send and  receive sms with gsm modem and mobile broadband module 
