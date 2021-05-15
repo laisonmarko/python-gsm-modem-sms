@@ -3,7 +3,7 @@ import time
 import sys
 
 
-ser = serial.Serial('COM30', 115200, timeout=12)   #initialize modem com port 
+ser = serial.Serial('COM5', 115200, timeout=12)   #initialize modem com port 
 
 def SendCommand(command, getline=True):
 
@@ -28,8 +28,6 @@ def ReceiveSms():
     ser.flushInput()
     ser.flushOutput()
     SendCommand('AT\r')
-
-
     command = 'AT+CMGL="REC UNREAD"\r'                  #gets sms that has not been read
     #print (SendCommand(command, getline=True))
     response = ser.readall()                            #read response from serial
@@ -71,4 +69,4 @@ def SendSms(message,to):
       ser.close()
 
 
-print(phone.ReceiveSms())
+print(ReceiveSms())
