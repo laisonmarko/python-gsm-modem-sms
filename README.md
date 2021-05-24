@@ -1,7 +1,7 @@
-# python-sms-modem-api
+# python-sms-modem
 GSM modem module for Python
 
-python-sms-modem-api is a program that allow sending and receiving sms using gsm modem or broadband module
+python-sms-modem is a program that allow sending and receiving sms using gsm modem or broadband module
 
 * features 
 
